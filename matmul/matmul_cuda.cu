@@ -1,6 +1,6 @@
-#include "cpu.hpp"
-#include "naive_cuda_kernel.hpp"
-#include "shared_cuda_kernel.hpp"
+#include <cpu.hpp>
+#include <naive_cuda_kernel.hpp>
+#include <shared_cuda_kernel.hpp>
 
 int main()
 {

@@ -15,16 +15,17 @@ void PrintArray(int *arr, int N)
 {
     for(int i = 0; i < N; ++i)
     {
-        std::cout<<arr[i]<<'\t';
+        std::cout<<arr[i]<<' ';
     }
+    std::cout<<'\n';
 }
 
-int CPUReduction(int *arr, int N)
+void CPUReduction(int *arr, int N, int *final)
 {
     int sum = 0;
     for(int i = 0; i < N; ++i)
     {
         sum += arr[i];
     }
-    return sum;
+    *final = sum;
 }

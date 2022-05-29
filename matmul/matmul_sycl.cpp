@@ -1,6 +1,6 @@
-#include "naive_sycl_kernel.hpp"
-#include "shared_sycl_kernel.hpp"
-#include "cpu.hpp"
+#include <naive_sycl_kernel.hpp>
+#include <shared_sycl_kernel.hpp>
+#include <cpu.hpp>
 
 static const int M = 1024;
 static const int N = 1024;
