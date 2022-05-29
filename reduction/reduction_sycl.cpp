@@ -50,10 +50,10 @@ int main(){
     std::cout<<"SYCL Shared, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
 
 
-    if (*final_cpu == *final_naive) std::cout<<"Naive CUDA pass"<<std::endl;
-    else std::cout<<"Naive CUDA failed"<<std::endl;
-    if (*final_cpu == *final_shared) std::cout<<"Shared CUDA pass"<<std::endl;
-    else std::cout<<"Shared CUDA failed"<<std::endl;
+    if (*final_cpu == *final_naive) std::cout<<"Naive SYCL pass"<<std::endl;
+    else std::cout<<"Naive SYCL failed"<<std::endl;
+    if (*final_cpu == *final_shared) std::cout<<"Shared SYCL pass"<<std::endl;
+    else std::cout<<"Shared SYCL failed"<<std::endl;
 
     free(arr, q);
     free(shared_input_arr, q);
