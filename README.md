@@ -4,6 +4,13 @@ Learning GPGPU computing via CUDA and SYCL. This repository works on parallel ma
 `bash builder.sh`
 ## Performance comparison
 ### Matrix multiplication
+```
+CPU operation, Time taken in ms: 6167371
+CUDA Naive, Time taken in ms: 3895
+CUDA Shared, Time taken in ms: 2015
+SYCL Naive, Time taken in ms: 7566
+SYCL Shared, Time taken in ms: 2287
+```
 ### Sum reduction
 ```
 CPU operation, Time taken in ms: 3018
@@ -26,6 +33,7 @@ Trivial O(N)
 ```
 ### Naive
 Step Complexity = O(logN)
+
 Work Complexity = O(N)
 ![reduction](figures/reduction.jpg)
 ### Shared
