@@ -43,6 +43,6 @@ void SharedSYCLMatMul(nd_item<2> item,
         }
 
         // Write back results
-        c[row * N + col] = tmp;
+        c[row * K + col] = tmp;
     }
 }

@@ -20,7 +20,9 @@ SYCL Naive, Time taken in ms: 1875
 SYCL Shared, Time taken in ms: 99
 ```
 ## Matmul algorithm
+![matmul](figures/matmul.jpg)
 ## Reduction algorithm
+![reduction](figures/f36a9ec57abdae322bd116c18df0cbe.jpg)
 ### Serial
 Trivial O(N)
 ```
