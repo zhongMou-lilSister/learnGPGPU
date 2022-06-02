@@ -26,15 +26,15 @@ void SharedSYCLMatMul(nd_item<2> item,
         // Sweep tile across matrix
         for (int i = 0; i < N; i += blockDim_x) {
             // Load in elements for this tile
-            s_a[threadIdx_x * blockDim_x + threadIdx_y] = a[row * N + i + threadIdx_y];
-            s_b[threadIdx_x * blockDim_x + threadIdx_y] = b[i * K + threadIdx_x * K + col];
+            s_a[threadIdx_x * blockDim_y + threadIdx_y] = a[row * N + i + threadIdx_y];
+            s_b[threadIdx_x * blockDim_y + threadIdx_y] = b[i * K + threadIdx_x * K + col];
             // out <<"i:"<<i<<"shared_a("<< row<<", "<<i + threadIdx_x<<")<->shared_b("<<i+threadIdx_y<<", "<<col<<")\n";
             // Wait for both tiles to be loaded in before doing computation
             item.barrier(sycl::access::fence_space::local_space);
             
             // Do matrix multiplication on the small matrix
             for (int j = 0; j < blockDim_x; j++) {
-                tmp += s_a[threadIdx_x * blockDim_x + j] * s_b[j * blockDim_x + threadIdx_y];
+                tmp += s_a[threadIdx_x * blockDim_y + j] * s_b[j * blockDim_y + threadIdx_y];
             }
 
             // Wait for all threads to finish using current tiles before loading in new
