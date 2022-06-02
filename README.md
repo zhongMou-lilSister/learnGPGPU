@@ -19,6 +19,9 @@ CUDA Shared, Time taken in ms: 1580
 SYCL Naive, Time taken in ms: 1875
 SYCL Shared, Time taken in ms: 99
 ```
+### Scan
+### Vector matrix multiplication
+### Transpose
 ## Matmul algorithm
 ![matmul](figures/f36a9ec57abdae322bd116c18df0cbe.jpg)
 ## Reduction algorithm

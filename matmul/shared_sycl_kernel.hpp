@@ -41,7 +41,7 @@ void SharedSYCLMatMul(nd_item<2> item,
             // ones
             item.barrier(sycl::access::fence_space::local_space);
         }
-
+        // enable optimization
         // Write back results
         c[row * K + col] = tmp;
     }
