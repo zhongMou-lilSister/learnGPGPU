@@ -55,3 +55,6 @@ Work Complexity = O(N)
 Use a shared memory to copy the array elements assigned to each block. Everything else stays the same.
 
 ## Matrix transpose
+This is an implementation of https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/
+### Question 1
+Why does he use a strided memory model in the first place? Is this purposed to show the speedup for shared memory?
