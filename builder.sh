@@ -16,11 +16,20 @@
 # echo '--Running reduction in SYCL'
 # bin/reduction_sycl
 
-echo '--Compiling transpose in CUDA'
-nvcc transpose/transpose_cuda.cu -I transpose/ -O3  -o bin/transpose_cuda
-echo '--Compiling transpose in SYCL'
-clang++ -fsycl -fsycl-targets=nvptx64-nvidia-cuda -I transpose/ transpose/transpose_sycl.cpp  -O3 -o bin/transpose_sycl
-echo '--Running transpose in CUDA'
-bin/transpose_cuda
-echo '--Running transpose in SYCL'
-bin/transpose_sycl
+# echo '--Compiling transpose in CUDA'
+# nvcc transpose/transpose_cuda.cu -I transpose/ -O3  -o bin/transpose_cuda
+# echo '--Compiling transpose in SYCL'
+# clang++ -fsycl -fsycl-targets=nvptx64-nvidia-cuda -I transpose/ transpose/transpose_sycl.cpp  -O3 -o bin/transpose_sycl
+# echo '--Running transpose in CUDA'
+# bin/transpose_cuda
+# echo '--Running transpose in SYCL'
+# bin/transpose_sycl
+
+echo '--Compiling Matrix Vector Multiplication in CUDA'
+nvcc matmulvec/matmulvec_cuda.cu -I matmulvec/ -O3  -o bin/matmulvec_cuda
+echo '--Compiling Matrix Vector Multiplication in SYCL'
+clang++ -fsycl -fsycl-targets=nvptx64-nvidia-cuda -I matmulvec/ matmulvec/matmulvec_sycl.cpp  -O3 -o bin/matmulvec_sycl
+echo '--Running Matrix Vector Multiplication in CUDA'
+bin/matmulvec_cuda
+echo '--Running Matrix Vector Multiplication in SYCL'
+bin/matmulvec_sycl
