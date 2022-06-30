@@ -30,6 +30,15 @@ CUDA Shared, Time taken in ms: 23682
 SYCL Naive, Time taken in ms: 159828
 SYCL Shared, Time taken in ms: 21350
 ```
+### Matrix Vector Multiplication
+(`matrice size == 10240 * 10240`)
+```
+CPU operation, Time taken in ms: 50141 (O3 optimized)
+Naive CUDA operation, Time taken in ms: 107584
+Shared CUDA operation, Time taken in ms: 11149
+Naive SYCL operation, Time taken in ms: 107863
+Shared SYCL operation, Time taken in ms: 11615
+```
 ### Scan
 ### Vector matrix multiplication
 
@@ -58,3 +67,9 @@ Use a shared memory to copy the array elements assigned to each block. Everythin
 This is an implementation of https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/
 ### Question 1
 Why does he use a strided memory model in the first place? Is this purposed to show the speedup for shared memory?
+
+## Matrix vector multiplication
+In the shared memory method, the vector is broken down into several portions, each of which is to assigned to the GPU shared memory. The block dim is set to be 1D. Even though the rows of the matrix are accessed and computed in parallel, and the vector elements are accessed in series, the assignment of the shared memory can also make use of the parallel threads.
+
+### Question 2
+How come O3 optimized CPU operation can be faster than the naive CUDA approach?
