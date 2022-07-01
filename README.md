@@ -73,3 +73,13 @@ In the shared memory method, the vector is broken down into several portions, ea
 
 ### Question 2
 How come O3 optimized CPU operation can be faster than the naive CUDA approach?
+
+## Inclusive Scan
+Hillis & Steele Algorithm
+### Question 3
+How can CUDA speed surpass CPU speed?
+```
+CPU operation, Time taken in ms: 4569168
+CUDA Naive, Time taken in ms: 6196287
+Naive CUDA pass
+```
