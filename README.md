@@ -65,12 +65,15 @@ Use a shared memory to copy the array elements assigned to each block. Everythin
 
 ## Matrix transpose
 This is an implementation of https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/
+![trans1](figures/trans1.bmp)
+![trans2](figures/trans2.bmp)
 ### Question 1
 Why does he use a strided memory model in the first place? Is this purposed to show the speedup for shared memory?
 
 ## Matrix vector multiplication
 In the shared memory method, the vector is broken down into several portions, each of which is to assigned to the GPU shared memory. The block dim is set to be 1D. Even though the rows of the matrix are accessed and computed in parallel, and the vector elements are accessed in series, the assignment of the shared memory can also make use of the parallel threads.
-
+![vec](figures/vec.bmp)
+![vec1](figures/vec1.bmp)
 ### Question 2
 How come O3 optimized CPU operation can be faster than the naive CUDA approach?
 
