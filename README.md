@@ -70,6 +70,8 @@ This is an implementation of https://developer.nvidia.com/blog/efficient-matrix-
 ### Question 1
 Why does he use a strided memory model in the first place? Is this purposed to show the speedup for shared memory?
 
+ALSO, are the "adjacent threads" in the block actually listed along the 1D x-axis, or listed along 2D x and y dimensions?
+
 ## Matrix vector multiplication
 In the shared memory method, the vector is broken down into several portions, each of which is to assigned to the GPU shared memory. The block dim is set to be 1D. Even though the rows of the matrix are accessed and computed in parallel, and the vector elements are accessed in series, the assignment of the shared memory can also make use of the parallel threads.
 ![vec](figures/vec.bmp)
