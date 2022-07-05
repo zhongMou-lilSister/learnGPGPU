@@ -18,14 +18,14 @@ int main(){
     auto start = std::chrono::high_resolution_clock::now();
     CPUTranspose(cpu_result, arr, N);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
-    std::cout<<"CPU operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
+    std::cout<<"CPU operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
     // PrintMatrix(cpu_result, N);
     auto start1 = std::chrono::high_resolution_clock::now();
     q.parallel_for(nd_range<2>(range<2>(N*BLOCK_ROWS/TILE_DIM, N), range<2>(BLOCK_ROWS, TILE_DIM)), [=] (nd_item<2> item){
         transposeNaive(item, naive_sycl_result, arr, BLOCK_ROWS, TILE_DIM, N);
     }).wait();
     auto elapsed1 = std::chrono::high_resolution_clock::now() - start1;
-    std::cout<<"SYCL Naive, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
+    std::cout<<"SYCL Naive, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
     // PrintMatrix(naive_sycl_result, N);
     auto start2 = std::chrono::high_resolution_clock::now();
     q.submit([&] (handler &h){
@@ -41,7 +41,7 @@ int main(){
         });
     }).wait();;
     auto elapsed2 = std::chrono::high_resolution_clock::now() - start2;
-    std::cout<<"SYCL Shared, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
+    std::cout<<"SYCL Shared, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
     
     if (CheckEquiv(cpu_result, naive_sycl_result, N)) std::cout<<"Naive CUDA pass"<<std::endl;
     else std::cout<<"Naive CUDA failed"<<std::endl;

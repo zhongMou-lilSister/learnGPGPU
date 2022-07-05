@@ -25,7 +25,7 @@ int main(){
     auto start = std::chrono::high_resolution_clock::now();
     CPUReduction(arr, N*N, final_cpu);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
-    std::cout<<"CPU operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
+    std::cout<<"CPU operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
     
     // naive GPU method
     auto start1 = std::chrono::high_resolution_clock::now();
@@ -34,7 +34,7 @@ int main(){
     NaiveCUDAReduction<<<1, N>>>(middle_naive_arr, final_naive);
     cudaDeviceSynchronize();
     auto elapsed1 = std::chrono::high_resolution_clock::now() - start1;
-    std::cout<<"CUDA Naive, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
+    std::cout<<"CUDA Naive, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
 
     // shared GPU method
     auto start2 = std::chrono::high_resolution_clock::now();
@@ -43,7 +43,7 @@ int main(){
     SharedCUDAReduction<<<1, N, N * sizeof(int)>>>(middle_shared_arr, final_shared);
     cudaDeviceSynchronize();
     auto elapsed2 = std::chrono::high_resolution_clock::now() - start2;
-    std::cout<<"CUDA Shared, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
+    std::cout<<"CUDA Shared, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
 
 
     if (*final_cpu == *final_naive) std::cout<<"Naive CUDA pass"<<std::endl;

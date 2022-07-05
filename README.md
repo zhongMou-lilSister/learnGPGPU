@@ -6,38 +6,38 @@ Learning GPGPU computing via CUDA and SYCL. This repository works on parallel ma
 ### Matrix multiplication
 (`matrice size == 1024 * 1024`)
 ```
-CPU operation, Time taken in ms: 6167371
-CUDA Naive, Time taken in ms: 3895
-CUDA Shared, Time taken in ms: 2015
-SYCL Naive, Time taken in ms: 7566
-SYCL Shared, Time taken in ms: 2287
+CPU operation, Time taken in us: 6167371
+CUDA Naive, Time taken in us: 3895
+CUDA Shared, Time taken in us: 2015
+SYCL Naive, Time taken in us: 7566
+SYCL Shared, Time taken in us: 2287
 ```
 ### Sum reduction
 (`array size == 1024 * 1024`)
 ```
-CPU operation, Time taken in ms: 3018
-CUDA Naive, Time taken in ms: 1537
-CUDA Shared, Time taken in ms: 1580
-SYCL Naive, Time taken in ms: 1875
-SYCL Shared, Time taken in ms: 99
+CPU operation, Time taken in us: 3018
+CUDA Naive, Time taken in us: 1537
+CUDA Shared, Time taken in us: 1580
+SYCL Naive, Time taken in us: 1875
+SYCL Shared, Time taken in us: 99
 ```
 ### Matrix transpose
 (`matrice size == 10240 * 10240`)
 ```
-CPU operation, Time taken in ms: 3099830
-CUDA Naive, Time taken in ms: 142891
-CUDA Shared, Time taken in ms: 23682
-SYCL Naive, Time taken in ms: 159828
-SYCL Shared, Time taken in ms: 21350
+CPU operation, Time taken in us: 3099830
+CUDA Naive, Time taken in us: 142891
+CUDA Shared, Time taken in us: 23682
+SYCL Naive, Time taken in us: 159828
+SYCL Shared, Time taken in us: 21350
 ```
 ### Matrix Vector Multiplication
 (`matrice size == 10240 * 10240`)
 ```
-CPU operation, Time taken in ms: 50141 (O3 optimized)
-Naive CUDA operation, Time taken in ms: 107584
-Shared CUDA operation, Time taken in ms: 11149
-Naive SYCL operation, Time taken in ms: 107863
-Shared SYCL operation, Time taken in ms: 11615
+CPU operation, Time taken in us: 50141 (O3 optimized)
+Naive CUDA operation, Time taken in us: 107584
+Shared CUDA operation, Time taken in us: 11149
+Naive SYCL operation, Time taken in us: 107863
+Shared SYCL operation, Time taken in us: 11615
 ```
 ### Scan
 ### Vector matrix multiplication
@@ -82,7 +82,7 @@ Hillis & Steele Algorithm
 ### Question 3
 How can CUDA speed surpass CPU speed?
 ```
-CPU operation, Time taken in ms: 4569168
-CUDA Naive, Time taken in ms: 6196287
+CPU operation, Time taken in us: 4569168
+CUDA Naive, Time taken in us: 6196287
 Naive CUDA pass
 ```

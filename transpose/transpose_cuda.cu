@@ -24,20 +24,20 @@ int main() {
     auto start = std::chrono::high_resolution_clock::now();
     CPUTranspose(cpu_result, arr, N);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
-    std::cout<<"CPU operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
+    std::cout<<"CPU operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
     // PrintMatrix(cpu_result, N);
     auto start1 = std::chrono::high_resolution_clock::now();
     transposeNaive<<<dimGrid, dimBlock>>>(naive_cuda_result, arr, BLOCK_ROWS, TILE_DIM, N);
     cudaDeviceSynchronize();
     auto elapsed1 = std::chrono::high_resolution_clock::now() - start1;
-    std::cout<<"CUDA Naive, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
+    std::cout<<"CUDA Naive, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
     
     auto start2 = std::chrono::high_resolution_clock::now();
     transposeShared<<<dimGrid, dimBlock, TILE_DIM * TILE_DIM * sizeof(int)>>>(shared_cuda_result, arr, BLOCK_ROWS, TILE_DIM, N);
     cudaDeviceSynchronize();
     auto elapsed2 = std::chrono::high_resolution_clock::now() - start2;
     
-    std::cout<<"CUDA Shared, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
+    std::cout<<"CUDA Shared, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
     // PrintMatrix(shared_cuda_result, N);
     if (CheckEquiv(cpu_result, naive_cuda_result, N)) std::cout<<"Naive CUDA pass"<<std::endl;
     else std::cout<<"Naive CUDA failed"<<std::endl;

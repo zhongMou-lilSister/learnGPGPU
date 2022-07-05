@@ -20,7 +20,7 @@ int main(){
     auto start = std::chrono::high_resolution_clock::now();
     CPUReduction(arr, N*N, final_cpu);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
-    std::cout<<"CPU operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
+    std::cout<<"CPU operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
     
     auto start1 = std::chrono::high_resolution_clock::now();
     q.parallel_for(nd_range<1>(N*N, N),  [=] (nd_item<1> item){
@@ -30,7 +30,7 @@ int main(){
         NaiveSYCLReduction(item, middle_naive_arr, final_naive);
     }).wait();
     auto elapsed1 = std::chrono::high_resolution_clock::now() - start1;
-    std::cout<<"SYCL Naive, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
+    std::cout<<"SYCL Naive, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
 
 
     auto start2 = std::chrono::high_resolution_clock::now();
@@ -47,7 +47,7 @@ int main(){
         });
     }).wait();
     auto elapsed2 = std::chrono::high_resolution_clock::now() - start2;
-    std::cout<<"SYCL Shared, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
+    std::cout<<"SYCL Shared, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
 
 
     if (*final_cpu == *final_naive) std::cout<<"Naive SYCL pass"<<std::endl;

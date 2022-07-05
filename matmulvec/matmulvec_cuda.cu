@@ -24,7 +24,7 @@ int main()
     auto start = std::chrono::high_resolution_clock::now();
     CPUMatMulVec(c_cpu, a, b, N);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
-    std::cout<<"CPU operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
+    std::cout<<"CPU operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
     int TILE_DIM = 1024;
     dim3 blocksPerGrid(N / TILE_DIM, 1, 1); //32 32
     dim3 threadsPerBlock(TILE_DIM, 1, 1); 
@@ -32,14 +32,14 @@ int main()
     NaiveCUDAMatMul<<<blocksPerGrid, threadsPerBlock>>>(c_naive_cuda, a, b, N);
     cudaDeviceSynchronize();
     auto elapsed1 = std::chrono::high_resolution_clock::now() - start1;
-    std::cout<<"Naive CUDA operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
+    std::cout<<"Naive CUDA operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
     
 
     auto start2 = std::chrono::high_resolution_clock::now();
     SharedCUDAMatMul<<<blocksPerGrid, threadsPerBlock, TILE_DIM * sizeof(int)>>>(c_shared_cuda, a, b, N);
     cudaDeviceSynchronize();
     auto elapsed2 = std::chrono::high_resolution_clock::now() - start2;
-    std::cout<<"Shared CUDA operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
+    std::cout<<"Shared CUDA operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
 
     // PrintMatrix(a, N);
     // PrintVec(b, N);

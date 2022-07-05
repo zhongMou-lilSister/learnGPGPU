@@ -21,14 +21,14 @@ int main(){
     auto start = std::chrono::high_resolution_clock::now();
     CPUMatMul(c_cpu, a, b, M, N, K);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
-    std::cout<<"CPU operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
+    std::cout<<"CPU operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
 
     auto start1 = std::chrono::high_resolution_clock::now();
     q.parallel_for(nd_range<2>(range<2>(32*32, 32*32), range<2>(32, 32)),  [=] (nd_item<2> item){
         NaiveSYCLMatMul(item, a, b, c_naive_sycl, M, N, K);
     }).wait();
     auto elapsed1 = std::chrono::high_resolution_clock::now() - start1;
-    std::cout<<"Naive SYCL operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
+    std::cout<<"Naive SYCL operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
 
     auto start2 = std::chrono::high_resolution_clock::now();
     q.submit([&] (handler &h){
@@ -47,7 +47,7 @@ int main(){
         });
     }).wait();
     auto elapsed2 = std::chrono::high_resolution_clock::now() - start2;
-    std::cout<<"Shared SYCL operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
+    std::cout<<"Shared SYCL operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
 
     // PrintMatrix(a, M, N);
     // PrintMatrix(b, M, N);

@@ -26,7 +26,7 @@ int main()
     auto start = std::chrono::high_resolution_clock::now();
     CPUMatMul(c_cpu, a, b, M, N, K);
     auto elapsed = std::chrono::high_resolution_clock::now() - start;
-    std::cout<<"CPU operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
+    std::cout<<"CPU operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()<<std::endl;
     
     dim3 blocksPerGrid(32, 32, 1); //32 32
     dim3 threadsPerBlock(32, 32, 1); 
@@ -34,14 +34,14 @@ int main()
     NaiveCUDAMatMul<<<blocksPerGrid, threadsPerBlock>>>(c_naive_cuda, a, b, M, N, K);
     cudaDeviceSynchronize();
     auto elapsed1 = std::chrono::high_resolution_clock::now() - start1;
-    std::cout<<"Naive CUDA operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
+    std::cout<<"Naive CUDA operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed1).count()<<std::endl;
     
 
     auto start2 = std::chrono::high_resolution_clock::now();
     SharedCUDAMatMul<<<blocksPerGrid, threadsPerBlock>>>(c_shared_cuda, a, b, M, N, K);
     cudaDeviceSynchronize();
     auto elapsed2 = std::chrono::high_resolution_clock::now() - start2;
-    std::cout<<"Shared CUDA operation, Time taken in ms: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
+    std::cout<<"Shared CUDA operation, Time taken in us: "<<std::chrono::duration_cast<std::chrono::microseconds>(elapsed2).count()<<std::endl;
     // PrintMatrix(h_a, M, N);
     // PrintMatrix(h_b, M, N);
     // PrintMatrix(h_c_cpu, M, N);
