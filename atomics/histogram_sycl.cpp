@@ -63,7 +63,7 @@ int main(){
     int THREADS = 512;
     int BLOCKS = (N + THREADS - 1) / THREADS;
 
-    size_t SHMEM = N_bins * sizeof(int);
+    size_t SHMEM = N_bins;
     q.submit([&] (handler &h){
         accessor<int, 1, access::mode::read_write, access::target::local> shared_arr(range<1>(SHMEM), h);
         h.parallel_for(nd_range<1>(THREADS*BLOCKS, THREADS), [=] (nd_item<1> item){
